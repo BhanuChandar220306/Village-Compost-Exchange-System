@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Household Dashboard - Village Compost Exchange</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/household.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="navbar-brand">
+            <h2>Village Compost Exchange</h2>
+        </div>
+
+        <div class="navbar-user">
+
+            <span id="welcomeUser">
+                Household
+            </span>
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+                type="button">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main Container -->
+    <main class="dashboard-container">
+
+        <!-- Page Heading -->
+        <section class="dashboard-heading">
+
+            <div>
+                <h1>Household Dashboard</h1>
+
+                <p>
+                    Manage your waste requests and rewards.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Dashboard Statistics -->
+        <section class="stats-grid">
+
+            <!-- Total Requests -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ♻
+                </div>
+
+                <div>
+                    <p>Total Requests</p>
+
+                    <h2 id="totalRequests">
+                        0
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <!-- Pending Requests -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+                <div>
+                    <p>Pending Requests</p>
+
+                    <h2 id="pendingRequests">
+                        0
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <!-- Reward Points -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ★
+                </div>
+
+                <div>
+                    <p>Reward Points</p>
+
+                    <h2 id="rewardPoints">
+                        0
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <!-- Collected Waste -->
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <p>Collected Waste</p>
+
+                    <h2 id="collectedWaste">
+                        0 kg
+                    </h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Create Waste Request -->
+        <section class="dashboard-card">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Create Waste Request</h2>
+
+                    <p>
+                        Submit your organic waste for collection.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form id="wasteRequestForm">
+
+                <div class="form-grid">
+
+                    <!-- Waste Type -->
+                    <div class="form-group">
+
+                        <label for="wasteType">
+                            Waste Type
+                        </label>
+
+                        <select
+                            id="wasteType"
+                            required>
+
+                            <option value="">
+                                Select waste type
+                            </option>
+
+                            <option value="ORGANIC">
+                                Organic Waste
+                            </option>
+
+                            <option value="FOOD">
+                                Food Waste
+                            </option>
+
+                            <option value="GARDEN">
+                                Garden Waste
+                            </option>
+
+                            <option value="KITCHEN">
+                                Kitchen Waste
+                            </option>
+
+                            <option value="OTHER">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Weight -->
+                    <div class="form-group">
+
+                        <label for="estimatedWeight">
+                            Estimated Weight (kg)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="estimatedWeight"
+                            min="0.1"
+                            step="0.1"
+                            placeholder="Example: 5"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Pickup Date -->
+                    <div class="form-group">
+
+                        <label for="pickupDate">
+                            Preferred Pickup Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="pickupDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="form-group form-group-full">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="4"
+                            maxlength="500"
+                            placeholder="Describe the waste..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button">
+
+                        Submit Waste Request
+
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div
+                id="wasteRequestMessage"
+                class="message">
+            </div>
+
+        </section>
+
+
+        <!-- My Waste Requests -->
+        <section class="dashboard-card">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>My Waste Requests</h2>
+
+                    <p>
+                        Track the status of your submitted requests.
+                    </p>
+                </div>
+
+                <button
+                    id="refreshRequestsButton"
+                    class="secondary-button"
+                    type="button">
+
+                    Refresh
+
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Waste Type</th>
+
+                            <th>Weight</th>
+
+                            <th>Pickup Date</th>
+
+                            <th>Description</th>
+
+                            <th>Status</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="requestsTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="empty-row">
+
+                                Loading requests...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Notifications -->
+        <section class="dashboard-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Notifications</h2>
+
+                    <p>
+                        Updates about your waste requests.
+                    </p>
+
+                </div>
+
+                <span
+                    id="unreadCount"
+                    class="notification-count">
+
+                    0 unread
+
+                </span>
+
+            </div>
+
+
+            <div id="notificationsContainer">
+
+                <div class="notification-empty">
+                    Loading notifications...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/household.js"></script>
+    <script src="js/notifications.js"></script>
+
+</body>
+
+</html>

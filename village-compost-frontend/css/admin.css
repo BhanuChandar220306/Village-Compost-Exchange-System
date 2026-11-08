@@ -1,0 +1,564 @@
+/* =========================================
+   ADMIN DASHBOARD
+========================================= */
+
+body {
+    background: #f4f7f5;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    background: #1b5e20;
+    color: white;
+    padding: 15px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+#adminName {
+    font-weight: 600;
+}
+
+.logout-btn {
+    background: #c62828;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    padding: 9px 16px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background: #b71c1c;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.admin-container {
+    width: 95%;
+    max-width: 1400px;
+
+    margin: 30px auto;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    margin: 0 0 6px;
+
+    color: #1b5e20;
+
+    font-size: 30px;
+}
+
+.page-header p {
+    margin: 0;
+
+    color: #666;
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(190px, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+
+    border-left: 5px solid #2e7d32;
+}
+
+.stat-title {
+    color: #666;
+
+    font-size: 14px;
+
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    color: #1b5e20;
+
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   ADMIN SECTIONS
+========================================= */
+
+.admin-section {
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 25px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin: 0 0 5px;
+
+    color: #1b5e20;
+
+    font-size: 22px;
+}
+
+.section-header p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.primary-btn {
+    background: #2e7d32;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    padding: 11px 20px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    margin-top: 15px;
+}
+
+.primary-btn:hover {
+    background: #1b5e20;
+}
+
+.refresh-btn {
+    background: #eeeeee;
+
+    color: #333;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    padding: 9px 15px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.refresh-btn:hover {
+    background: #e0e0e0;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 700px;
+}
+
+thead {
+    background: #e8f5e9;
+}
+
+th {
+    text-align: left;
+
+    padding: 13px;
+
+    color: #1b5e20;
+
+    font-size: 14px;
+
+    border-bottom: 2px solid #c8e6c9;
+}
+
+td {
+    padding: 13px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #444;
+
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #fafafa;
+}
+
+
+/* =========================================
+   EMPTY MESSAGE
+========================================= */
+
+.empty-message {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #777;
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.form-card {
+    background: #f8fbf8;
+
+    border: 1px solid #dcebdd;
+
+    border-radius: 8px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+}
+
+.form-card h3 {
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    color: #2e7d32;
+}
+
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 7px;
+
+    font-weight: 600;
+
+    color: #444;
+
+    font-size: 14px;
+}
+
+.form-group input {
+    padding: 11px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #2e7d32;
+
+    box-shadow:
+        0 0 0 2px rgba(46, 125, 50, 0.1);
+}
+
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.status-badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #fff3cd;
+
+    color: #856404;
+}
+
+.status-accepted {
+    background: #d4edda;
+
+    color: #155724;
+}
+
+.status-rejected {
+    background: #f8d7da;
+
+    color: #721c24;
+}
+
+.status-allocated {
+    background: #d1ecf1;
+
+    color: #0c5460;
+}
+
+.status-completed {
+    background: #c8e6c9;
+
+    color: #1b5e20;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.action-btn {
+    border: none;
+
+    border-radius: 5px;
+
+    padding: 7px 12px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-right: 5px;
+}
+
+.approve-btn {
+    background: #2e7d32;
+
+    color: white;
+}
+
+.approve-btn:hover {
+    background: #1b5e20;
+}
+
+.reject-btn {
+    background: #c62828;
+
+    color: white;
+}
+
+.reject-btn:hover {
+    background: #b71c1c;
+}
+
+.delete-btn {
+    background: #c62828;
+
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #b71c1c;
+}
+
+
+/* =========================================
+   NOTIFICATIONS
+========================================= */
+
+#notificationsContainer {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.notification-item {
+    padding: 14px;
+
+    background: #f5f5f5;
+
+    border-left: 4px solid #2e7d32;
+
+    border-radius: 5px;
+}
+
+.notification-item.unread {
+    background: #e8f5e9;
+}
+
+.notification-message {
+    color: #333;
+
+    margin-bottom: 5px;
+}
+
+.notification-date {
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 12px 15px;
+    }
+
+    .navbar-brand {
+        font-size: 18px;
+    }
+
+    .navbar-right {
+        gap: 10px;
+    }
+
+    .admin-container {
+        width: 94%;
+
+        margin: 20px auto;
+    }
+
+    .admin-section {
+        padding: 18px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .navbar-right {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+}

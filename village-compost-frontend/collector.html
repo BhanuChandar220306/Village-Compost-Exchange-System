@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Collector Dashboard | Village Compost</title>
+
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/collector.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+            Village Compost Exchange
+        </div>
+
+        <div class="nav-right">
+
+            <span id="welcomeUser">
+                Welcome, Collector
+            </span>
+
+            <button id="logoutBtn" class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="dashboard-container">
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <div>
+                <h1>Collector Dashboard</h1>
+
+                <p>
+                    Manage waste collection and pickup schedules.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Pending Requests
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="pendingCount">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Accepted Requests
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="acceptedCount">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Scheduled Pickups
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="scheduledCount">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Completed Pickups
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="completedCount">
+                    0
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PENDING REQUESTS ================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Pending Waste Requests</h2>
+
+                    <p>
+                        Waste requests waiting for collection.
+                    </p>
+                </div>
+
+                <button
+                    id="refreshRequestsBtn"
+                    class="secondary-btn">
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Household</th>
+                            <th>Waste Type</th>
+                            <th>Weight</th>
+                            <th>Pickup Date</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="pendingRequestsBody">
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="empty-message">
+
+                                Loading requests...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p
+                id="requestMessage"
+                class="message">
+            </p>
+
+        </section>
+
+
+        <!-- ================= ACCEPTED REQUESTS ================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Accepted Requests</h2>
+
+                    <p>
+                        Requests accepted by you and ready for pickup scheduling.
+                    </p>
+
+                </div>
+
+                <button
+                    id="refreshAcceptedBtn"
+                    class="secondary-btn">
+
+                    Refresh
+
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Household</th>
+                            <th>Waste Type</th>
+                            <th>Weight</th>
+                            <th>Pickup Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="acceptedRequestsBody">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="empty-message">
+
+                                Loading accepted requests...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SCHEDULE PICKUP ================= -->
+
+        <section
+            class="dashboard-section"
+            id="scheduleSection">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Schedule Pickup</h2>
+
+                    <p>
+                        Create a pickup schedule for an accepted waste request.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="pickupForm"
+                class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="wasteRequestId">
+                        Waste Request ID
+                    </label>
+
+                    <input
+                        type="number"
+                        id="wasteRequestId"
+                        name="wasteRequestId"
+                        min="1"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="pickupDate">
+                        Pickup Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="pickupDate"
+                        name="pickupDate"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="pickupTime">
+                        Pickup Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="pickupTime"
+                        name="pickupTime"
+                        required>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Schedule Pickup
+
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <p
+                id="pickupMessage"
+                class="message">
+            </p>
+
+        </section>
+
+
+        <!-- ================= MY PICKUPS ================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>My Scheduled Pickups</h2>
+
+                    <p>
+                        View and complete your assigned pickups.
+                    </p>
+
+                </div>
+
+                <button
+                    id="refreshPickupsBtn"
+                    class="secondary-btn">
+
+                    Refresh
+
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Waste Request</th>
+                            <th>Household</th>
+                            <th>Pickup Date</th>
+                            <th>Pickup Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="pickupsBody">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="empty-message">
+
+                                Loading pickups...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <p
+                id="completeMessage"
+                class="message">
+            </p>
+
+        </section>
+
+
+        <!-- ================= NOTIFICATIONS ================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Notifications</h2>
+
+                    <p>
+                        Important updates related to your collection work.
+                    </p>
+
+                </div>
+
+                <span
+                    id="unreadCount"
+                    class="notification-count">
+
+                    0 unread
+
+                </span>
+
+            </div>
+
+
+            <div
+                id="notificationsContainer"
+                class="notifications-container">
+
+                Loading notifications...
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/api.js"></script>
+    <script src="js/collector.js"></script>
+    <script src="js/notifications.js"></script>
+
+</body>
+</html>
